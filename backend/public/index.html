@@ -1,0 +1,47 @@
+<html>
+
+<head>
+    <title>Express</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/button.css">
+</head>
+
+<body>
+<h1>Learn Cookies in Depth</h1>
+<p>Welcome to Express</p>
+<div>
+    <button class="btn btn-default" id="login-button">Login To Get Cookie</button>
+</div>
+<br/>
+<div>
+    <button class="btn btn-default" id="user-button">Query Users To Get Cookie</button>
+</div>
+<br/>
+<div>
+    <button class="btn btn-default" id="cookies-button">Cookies Sent To Server</button>
+</div>
+<div id="content"></div>
+<div><a href="/api/cookies-received">cookies link</a></div>
+</body>
+<script>
+    document.querySelector("#login-button").addEventListener("click", function () {
+        fetch('/api/login').then(res => {
+            alert('login success, open dev tool to check the cookie')
+        })
+    })
+
+    document.querySelector("#user-button").addEventListener("click", function () {
+        fetch('/api/users').then(res => {
+            alert('get users success, open dev tool to check the cookie')
+        })
+    })
+
+    document.querySelector("#cookies-button").addEventListener("click", function () {
+        fetch('/api/cookies-received').then(res => res.json())
+            .then(res => {
+                document.querySelector("#content").innerHTML = JSON.stringify(res, null, 2);
+            })
+    })
+
+</script>
+</html>
