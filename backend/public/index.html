@@ -19,9 +19,15 @@
 <br/>
 <div>
     <button class="btn btn-default" id="cookies-button">Cookies Sent To Server</button>
+    &nbsp;&nbsp;
+    <a href="/api/cookies-received">cookies link</a>
 </div>
 <div id="content"></div>
-<div><a href="/api/cookies-received">cookies link</a></div>
+
+<br/>
+<div>
+    <button class="btn btn-default" id="modify-cookie-button">Modify Cookies Via JS</button>
+</div>
 </body>
 <script>
     document.querySelector("#login-button").addEventListener("click", function () {
@@ -41,6 +47,11 @@
             .then(res => {
                 document.querySelector("#content").innerHTML = JSON.stringify(res, null, 2);
             })
+    })
+
+    document.querySelector("#modify-cookie-button").addEventListener("click", function () {
+        document.cookie = "create-by-js=abc" + Date.now();
+        document.cookie = "users-id=cannotupdate";
     })
 
 </script>
